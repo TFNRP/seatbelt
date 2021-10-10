@@ -1,0 +1,23 @@
+body {
+  user-select:none;
+  overflow:hidden;
+}
+
+#ui {
+	display:none;
+}
+
+@keyframes blink {
+  0% { opacity:1 }
+  50% { opacity:0 }
+} 
+
+svg {
+  position:absolute;
+  animation:blink normal 1s infinite ease-in-out;
+  fill:red;
+  top:42.1vw;
+  left:15.4vw;
+  width:3vw;
+  height:3vw;
+}
