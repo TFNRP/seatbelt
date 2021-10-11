@@ -19,7 +19,7 @@ end)
 
 function ActivateSeatbelt()
   if activated == true then
-    return error("seatbelt attempted to activate when already active.")
+    return error('seatbelt attempted to activate when already active.')
   end
   -- compat for other resources like carhud
   TriggerEvent('seatbelt:stateChange', true)
@@ -58,7 +58,7 @@ end
 
 function DeactivateSeatbelt()
   if activated == false then
-    return error("seatbelt attempted to deactivate when already deactivated.")
+    return error('seatbelt attempted to deactivate when already deactivated.')
   end
   TriggerEvent('seatbelt:stateChange', false)
 

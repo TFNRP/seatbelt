@@ -4,13 +4,13 @@ body {
 }
 
 #ui {
-	display:none;
+  display:none;
 }
 
 @keyframes blink {
   0% { opacity:1 }
   50% { opacity:0 }
-} 
+}
 
 svg {
   position:absolute;
