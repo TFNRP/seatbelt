@@ -155,7 +155,7 @@ RegisterNetEvent('seatbelt:ClientNotify', function(serverId)
   local ped = PlayerPedId()
   local player = GetPlayerFromServerId(serverId)
   local vehicle = GetVehiclePedIsIn(ped)
-  if IsLEO() and not IsHudHidden() then -- player ~= PlayerId() and
+  if player ~= PlayerId() and IsLEO() and not IsHudHidden() then
     print(#(GetEntityCoords(ped) - GetEntityCoords(GetPlayerPed(player))))
     if #(GetEntityCoords(ped) - GetEntityCoords(GetPlayerPed(player))) < 19.999 then
       ShowNotification('<C>Player ' .. serverId .. '</C> is not weaing a seatbelt in <C>~y~' .. GetVehicleNumberPlateText(vehicle) .. '~s~</C>.')
