@@ -66,7 +66,6 @@ function DeactivateSeatbelt()
   -- HUD
   Citizen.CreateThread(function()
     while not activated do
-      Citizen.Wait(2e3)
       local ped = PlayerPedId()
       if IsPedInAnyVehicle(ped) and DoesPedVehicleHaveSeatbelt(ped) and not IsHudHidden() then
         local vehicle = GetVehiclePedIsIn(ped)
@@ -83,24 +82,24 @@ function DeactivateSeatbelt()
         SetWarning(false)
         showHelp = false
       end
+      Citizen.Wait(2e3)
     end
   end)
 
   -- help text separate from hud
   Citizen.CreateThread(function()
     while not activated do
-      Citizen.Wait(65)
       if showHelp then
         ShowHelpText('~BLIP_GANG_VEHICLE~ Press ~INPUT_REPLAY_SHOWHOTKEY~ to ~y~buckle~s~ your seatbelt.', newbieBeep)
         newbieBeep = false
       end
+      Citizen.Wait(65)
     end
   end)
 
   -- handling
   Citizen.CreateThread(function()
     while not activated do
-      Citizen.Wait(50)
       local ped = PlayerPedId()
       if IsPedInAnyVehicle(ped) then
         if DoesPedVehicleHaveSeatbelt(ped) then
@@ -120,18 +119,19 @@ function DeactivateSeatbelt()
           lastVelocity = GetEntityVelocity(vehicle)
         end
       end
+      Citizen.Wait(50)
     end
   end)
 
   -- notification
   Citizen.CreateThread(function()
     while not activated do
-      Citizen.Wait(3e3)
       local ped = PlayerPedId()
       local vehicle = GetVehiclePedIsIn(ped)
       if IsPedInAnyVehicle(ped) and DoesPedVehicleHaveSeatbelt(ped) and GetEntitySpeed(vehicle) * 3.6 > 10 then
         TriggerServerEvent('seatbelt:ServerNotify')
       end
+      Citizen.Wait(3e3)
     end
   end)
 
