@@ -155,11 +155,17 @@ end
 RegisterNetEvent('seatbelt:ClientNotify', function(serverId)
   local ped = PlayerPedId()
   local player = GetPlayerFromServerId(serverId)
-  local vehicle = GetVehiclePedIsIn(ped)
-  if player ~= PlayerId() and IsLEO() and not IsHudHidden() then
+  local playerPed = GetPlayerPed(player) -- onesync notice: returns -1 if not loaded
+  if player ~= PlayerId() and IsLEO() and not IsHudHidden() and IsPedInAnyVehicle(playerPed) then
     print(#(GetEntityCoords(ped) - GetEntityCoords(GetPlayerPed(player))))
     if #(GetEntityCoords(ped) - GetEntityCoords(GetPlayerPed(player))) < 19.999 then
-      ShowNotification('<C>Player ' .. serverId .. '</C> is not weaing a seatbelt in <C>~y~' .. GetVehicleNumberPlateText(vehicle) .. '~s~</C>.')
+      ShowNotification(
+        '<C>Player ' ..
+        serverId ..
+        '</C> is not weaing a seatbelt in <C>~y~' ..
+        GetVehicleNumberPlateText(GetVehiclePedIsIn(playerPed)) ..
+        '~s~</C>.'
+      )
     end
   end
 end)
