@@ -157,7 +157,6 @@ RegisterNetEvent('seatbelt:ClientNotify', function(serverId)
   local player = GetPlayerFromServerId(serverId)
   local playerPed = GetPlayerPed(player) -- onesync notice: returns -1 if not loaded
   if player ~= PlayerId() and IsLEO() and not IsHudHidden() and IsPedInAnyVehicle(playerPed) then
-    print(#(GetEntityCoords(ped) - GetEntityCoords(GetPlayerPed(player))))
     if #(GetEntityCoords(ped) - GetEntityCoords(GetPlayerPed(player))) < 19.999 then
       ShowNotification(
         '<C>Player ' ..
