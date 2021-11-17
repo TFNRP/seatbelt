@@ -169,4 +169,7 @@ RegisterNetEvent('seatbelt:ClientNotify', function(serverId)
   end
 end)
 
-DeactivateSeatbelt()
+
+Citizen.CreateThread(function()
+  DeactivateSeatbelt()
+end)
