@@ -15,8 +15,6 @@ $ git clone https://github.com/TFNRP/seatbelt.git
 - Add the following to your `server.cfg`:
   - `ensure seatbelt`
 
-https://github.com/TFNRP/seatbelt
-
 ## Features
 
 Modern Seatbelt does the following:
