@@ -42,6 +42,7 @@ Features that are planned for Modern Seatbelt:
 ## Configuration
 
 Modern Seatbelt has no config.
+
 <details>
 <summary>Change the default <code>/seatbelt</code> <kbd>K</kbd> keybind</summary>
 
@@ -51,12 +52,12 @@ Go to [client.lua:8:56](https://github.com/TFNRP/seatbelt/blob/main/client.lua#L
 
 ## Contributing
 
-[Reports issues and create suggestions](https://github.com/TFNRP/seatbelt/issues).
+[Reports issues and create suggestions](https://github.com/TFNRP/seatbelt/issues).  
 [Improve code, fix issues and add suggestions](https://github.com/TFNRP/seatbelt/pulls).
 
 ## Credits & Copyright
 
-Thanks to @TehRamsus for their [Seatbelt](https://github.com/TehRamsus/Seatbelt) script, which inspired me to create Modern Seatbelt.
-Licensed under [MIT License](https://github.com/TFNRP/seatbelt/blob/main/LICENSE). No code or assets of the inspiring work has been used.
-The original author stated they would rework their original work but has not done so since Oct 25th, '21, hence my release.
+Thanks to @TehRamsus for their [Seatbelt](https://github.com/TehRamsus/Seatbelt) script, which inspired me to create Modern Seatbelt.  
+Licensed under [MIT License](https://github.com/TFNRP/seatbelt/blob/main/LICENSE). No code or assets of the inspiring work has been used.  
+The original author stated they would rework their original work but has not done so since Oct 25th, '21, hence my release.  
 I messaged @TehRamsus regarding my script on Oct 11th, '21 and yet to receive a response. I'm happy to take down this release upon request.
