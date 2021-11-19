@@ -11,19 +11,15 @@ if RegisterFrameworkCommand == nil then
   end
 end
 
-if exports.framework.IsHudHidden then
+if GetConvar('tfnrp_framework_init') == 'true' then
   IsHudHidden = exports.framework.IsHudHidden
-else
-  function IsHudHidden()
-    return false
-  end
-end
-
-if exports.framework.GetLocalClientDuty then
   function IsLEO()
     return exports.framework:GetLocalClientDuty() > 0
   end
 else
+  function IsHudHidden()
+    return false
+  end
   function IsLEO()
     return IsPedInAnyPoliceVehicle(PlayerPedId())
   end
