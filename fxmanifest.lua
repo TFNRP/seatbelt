@@ -3,7 +3,7 @@ game 'gta5'
 
 repository 'https://github.com/TFNRP/seatbelt'
 fork_repository 'https://github.com/TehRamsus/Seatbelt'
-version '0.1.1'
+version '0.1.2'
 author 'Reece Stokes <hagen@hyena.gay>'
 
 client_script {
