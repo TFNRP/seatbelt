@@ -11,7 +11,7 @@ if RegisterFrameworkCommand == nil then
   end
 end
 
-if GetConvar('tfnrp_framework_init') == 'true' then
+if GetConvar('tfnrp_framework_init', 'false') == 'true' then
   IsHudHidden = exports.framework.IsHudHidden
   function IsLEO()
     return exports.framework:GetLocalClientDuty() > 0
