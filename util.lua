@@ -40,10 +40,10 @@ local GetPlayerIdentifierMethods = {
     local names = {
       'Driver',
       'Passenger',
-      'Back left passenger',
-      'Back right passenger',
-      'Far back left passenger',
-      'Far back right passenger',
+      'Rear left passenger',
+      'Rear right passenger',
+      'Far rear left passenger',
+      'Far rear right passenger',
     }
     for seat = 1, math.min(#names, seats) do
       if GetPedInVehicleSeat(vehicle, seat - 2) == playerPed then
