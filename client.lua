@@ -109,7 +109,6 @@ function DeactivateSeatbelt()
         local _hasSeatbelt, strong = DoesPedVehicleHaveSeatbelt(ped)
         hasSeatbelt = _hasSeatbelt
         if hasSeatbelt and not strong then
-
           local vehicle = GetVehiclePedIsIn(ped)
           local speed = GetEntitySpeed(vehicle)
 
