@@ -28,6 +28,7 @@ end
 -- config setup
 Constants = {
   Distance = Config.Distance + 0.0,
+  Excluded = Config.Excluded,
 }
 
 local GetPlayerIdentifierMethods = {
@@ -63,13 +64,27 @@ GetPlayerIdentifierMethods = nil
 Config = nil
 
 function DoesPedVehicleHaveSeatbelt(ped)
-  return not (
-    not IsPedInAnyVehicle(ped)
-    or IsPedOnAnyBike(ped)
-    or IsPedInAnyBoat(ped)
-    or IsPedInAnyPlane(ped)
-    or IsPedInAnyHeli(ped)
-  )
+  if not IsPedInAnyVehicle(ped)
+     or IsPedOnAnyBike(ped)
+     or IsPedInAnyBoat(ped)
+     or IsPedInAnyPlane(ped)
+     or IsPedInAnyHeli(ped)
+  then return false, false end
+
+  local vehicle = GetVehiclePedIsIn(ped)
+  local model = GetEntityModel(vehicle)
+  if Constants.Excluded[model] then
+    if Constants.Excluded[model] == 2 then
+      return true, true
+    elseif type(Constants.Excluded[model]) == 'table' then
+      for seat, type in pairs(Constants.Excluded[model]) do
+        if GetPedInVehicleSeat(vehicle, seat - 2) == ped then
+          return false, type == 2
+        end
+      end
+    end
+    return true, false
+  end
 end
 
 function Fwv(entity)

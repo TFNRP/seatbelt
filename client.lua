@@ -4,15 +4,19 @@ local lastVelocity = vector3(0, 0, 0)
 local newbieBeep = true
 local showHelp = false
 local activated
+local hasSeatbelt
 
 RegisterKeyMapping('seatbelt', 'Seatbelt', 'keyboard', 'k')
 RegisterFrameworkCommand('seatbelt', function()
   local ped = PlayerPedId()
-  if IsPedInAnyVehicle(ped) and DoesPedVehicleHaveSeatbelt(ped) then
-    if activated then
-      DeactivateSeatbelt()
-    else
-      ActivateSeatbelt()
+  if IsPedInAnyVehicle(ped) then
+    local vehcileHasSeatbelt, strong = DoesPedVehicleHaveSeatbelt(ped)
+    if vehcileHasSeatbelt and not strong then
+      if activated then
+        DeactivateSeatbelt()
+      else
+        ActivateSeatbelt()
+      end
     end
   end
 end)
@@ -67,7 +71,7 @@ function DeactivateSeatbelt()
   Citizen.CreateThread(function()
     while not activated do
       local ped = PlayerPedId()
-      if IsPedInAnyVehicle(ped) and DoesPedVehicleHaveSeatbelt(ped) and not IsHudHidden() then
+      if IsPedInAnyVehicle(ped) and hasSeatbelt and not IsHudHidden() then
         local vehicle = GetVehiclePedIsIn(ped)
         local speed = GetEntitySpeed(vehicle) * 3.6
 
@@ -102,7 +106,9 @@ function DeactivateSeatbelt()
     while not activated do
       local ped = PlayerPedId()
       if IsPedInAnyVehicle(ped) then
-        if DoesPedVehicleHaveSeatbelt(ped) then
+        local _hasSeatbelt, strong = DoesPedVehicleHaveSeatbelt(ped)
+        hasSeatbelt = _hasSeatbelt
+        if hasSeatbelt and not strong then
 
           local vehicle = GetVehiclePedIsIn(ped)
           local speed = GetEntitySpeed(vehicle)
@@ -128,7 +134,7 @@ function DeactivateSeatbelt()
     while not activated do
       local ped = PlayerPedId()
       local vehicle = GetVehiclePedIsIn(ped)
-      if IsPedInAnyVehicle(ped) and DoesPedVehicleHaveSeatbelt(ped) and GetEntitySpeed(vehicle) * 3.6 > 10 then
+      if IsPedInAnyVehicle(ped) and hasSeatbelt and GetEntitySpeed(vehicle) * 3.6 > 10 then
         TriggerServerEvent('seatbelt:ServerNotify')
       end
       Citizen.Wait(3e3)

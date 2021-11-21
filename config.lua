@@ -12,4 +12,21 @@ Config = {
   --- Distance which LEOs can detect seatbelt-less occupants within.
   --- @type number
   Distance = 20,
+
+  --- Custom vehicles/seats that don't have seatbelts.  
+  --- Bicycles, motorbikes and submersibles are excluded automatically
+  --- - `1` or `true` = No seatbelt, windscreen ejection still occurs
+  --- - `2` = Seatbelt always on, ejection is never calculated
+  --- @type table<hash, boolean|table<number, boolean>>
+  Excluded = {
+    [GetHashKey('MINITANK')] = 2, -- Seatbelt always on.
+    [GetHashKey('HALFTRACK')] = { [1] = true }, -- Seat #3 has no seatbelt.
+    [GetHashKey('KHANJALI')] = 2,
+    [GetHashKey('APC')] = 2,
+    [GetHashKey('THRUSTER')] = 2,
+    [GetHashKey('RHINO')] = 2,
+  },
 }
+
+--- A model hash key
+--- @alias hash number
