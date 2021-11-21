@@ -29,6 +29,7 @@ end
 Constants = {
   Distance = Config.Distance + 0.0,
   Excluded = Config.Excluded,
+  DefaultKeybind = Config.DefaultKeybind,
 }
 
 local GetPlayerIdentifierMethods = {

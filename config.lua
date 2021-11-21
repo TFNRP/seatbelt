@@ -13,6 +13,14 @@ Config = {
   --- @type number
   Distance = 20,
 
+  --- The default seatbelt keybind.  
+  --- After a player joins, their keybind will not change if
+  --- the default keybind changes.  
+  --- Players can manually change this keybind in their settings.
+  --- @type string
+  --- @see {@link https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard}
+  DefaultKeybind = 'K',
+
   --- Custom vehicles/seats that don't have seatbelts.  
   --- Bicycles, motorbikes and submersibles are excluded automatically
   --- - `1` or `true` = No seatbelt, windscreen ejection still occurs
