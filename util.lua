@@ -25,6 +25,43 @@ else
   end
 end
 
+-- config setup
+Constants = {
+  Distance = Config.Distance + 0.0,
+}
+
+local GetPlayerIdentifierMethods = {
+  function(serverId)
+    return '<C>Player ' .. serverId .. '</C>'
+  end,
+  function(_, playerPed, vehicle)
+    local hash = GetEntityModel(vehicle)
+    local seats = GetVehicleModelNumberOfSeats(hash)
+    local names = {
+      'Driver',
+      'Passenger',
+      'Back left passenger',
+      'Back right passenger',
+      'Far back left passenger',
+      'Far back right passenger',
+    }
+    for seat = 1, math.min(#names, seats) do
+      if GetPedInVehicleSeat(vehicle, seat - 2) == playerPed then
+        return names[seat]
+      end
+    end
+  end,
+  function(serverId)
+    return '<C>' .. GetPlayerName(serverId) .. '</C>'
+  end,
+}
+
+--- GetPlayerIdentifier is a reserved namespace
+GetPlayerIdentifier_ = GetPlayerIdentifierMethods[Config.PlayerIdentifierType]
+
+GetPlayerIdentifierMethods = nil
+Config = nil
+
 function DoesPedVehicleHaveSeatbelt(ped)
   return not (
     not IsPedInAnyVehicle(ped)
