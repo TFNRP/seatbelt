@@ -84,8 +84,8 @@ function DoesPedVehicleHaveSeatbelt(ped)
         end
       end
     end
-    return true, false
   end
+  return true, false
 end
 
 function Fwv(entity)
