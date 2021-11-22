@@ -1,5 +1,5 @@
 --- Configuration variables
---- @type table<string, any>
+--- @type table
 Config = {
   --- Changes how players are identified to LEOs. Cannot be nilish
   --- - `1` = Player ID (i.e. "Player 7")
