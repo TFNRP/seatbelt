@@ -39,14 +39,14 @@ Features that are planned for Modern Seatbelt:
 
 ## Configuration
 
-Modern Seatbelt has no config.
+Check [config.lua](https://github.com/TFNRP/seatbelt/blob/main/config.lua) for better details.
 
-<details>
-<summary>Change the default <code>/seatbelt</code> <kbd>K</kbd> keybind</summary>
-
-Go to [client.lua:8:56](https://github.com/TFNRP/seatbelt/blob/main/client.lua#L8) (line 8, character 56) and change `k` to anything from [the documentation](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard) (or anything from `A-Z`)
-
-</details>
+Name | Info | Default
+--: | :-- | :--
+`PlayerIdentifierType` | What type of LEO notifications should be shown?</br>Can be player's ID, player's seat (i.e. Driver or rear passenger) or player's username. | `1`
+`Distance` | The amount of distance LEOs have to be to detect people not weaing a seatbelt. | `20`
+`DefaultKeybind` | The default seatbelt keybind. | `K`
+`Excluded` | A list of excluded vehicles and vehicle seats.
 
 ## Contributing
 
