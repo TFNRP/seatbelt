@@ -28,7 +28,7 @@ Config = {
   --- @type table<hash, boolean|table<number, boolean>>
   Excluded = {
     [GetHashKey('MINITANK')] = 2, -- Seatbelt always on.
-    [GetHashKey('HALFTRACK')] = { [1] = true }, -- Seat #3 has no seatbelt.
+    [GetHashKey('HALFTRACK')] = { [3] = true }, -- Seat #3 has no seatbelt.
     [GetHashKey('KHANJALI')] = 2,
     [GetHashKey('APC')] = 2,
     [GetHashKey('THRUSTER')] = 2,
