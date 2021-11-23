@@ -159,9 +159,9 @@ end
 
 RegisterNetEvent('seatbelt:ClientNotify', function(serverId)
   local ped = PlayerPedId()
-  local player = GetPlayerFromServerId(serverId)
-  local playerPed = GetPlayerPed(player) -- onesync notice: returns -1 if not loaded
-  if player ~= PlayerId() and IsLEO() and not IsHudHidden() and IsPedInAnyVehicle(playerPed) then
+  local player = GetPlayerFromServerId(serverId) -- onesync notice: returns -1 if not loaded
+  local playerPed = GetPlayerPed(player)
+  if player ~= PlayerId() and player > 0 and IsLEO() and not IsHudHidden() and IsPedInAnyVehicle(playerPed) then
     local vehicle = GetVehiclePedIsIn(playerPed)
     local identifier = GetPlayerIdentifier_(serverId, playerPed, vehicle)
     if #(GetEntityCoords(ped) - GetEntityCoords(GetPlayerPed(player))) < Constants.Distance and identifier then
