@@ -94,8 +94,13 @@ function DeactivateSeatbelt()
   Citizen.CreateThread(function()
     while not activated do
       if showHelp then
-        ShowHelpText('~BLIP_GANG_VEHICLE~ Press ~INPUT_REPLAY_SHOWHOTKEY~ to ~y~buckle~s~ your seatbelt.', newbieBeep)
+        local message = '~BLIP_GANG_VEHICLE~ Press ~INPUT_REPLAY_SHOWHOTKEY~ to ~y~buckle~s~ your seatbelt.'
+        ShowHelpText(message, newbieBeep)
         newbieBeep = false
+        for _ = 0, 8 do
+          Citizen.Wait(5)
+          ShowHelpText(message, false)
+        end
       end
       Citizen.Wait(65)
     end
