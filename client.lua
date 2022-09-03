@@ -17,6 +17,7 @@ RegisterFrameworkCommand('seatbelt', function()
       else
         ActivateSeatbelt()
       end
+      SendNUIMessage({ State = activated })
     end
   end
 end)
@@ -148,17 +149,10 @@ function DeactivateSeatbelt()
   activated = false
 end
 
-function SetWarning (bool)
-  if bool then
-    if not showingWarning then
-      SendNUIMessage({ SeatbeltUIWarning = true })
-      showingWarning = true
-    end
-  else
-    if showingWarning then
-      SendNUIMessage({ SeatbeltUIWarning = false })
-      showingWarning = false
-    end
+function SetWarning(bool)
+  if bool ~= showingWarning then
+    SendNUIMessage({ Enabled = bool })
+    showingWarning = bool
   end
 end
 

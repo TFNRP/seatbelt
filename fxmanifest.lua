@@ -14,4 +14,4 @@ client_script {
 }
 server_script 'server.lua'
 ui_page 'static/index.html'
-file 'static/*'
+file 'static/**'

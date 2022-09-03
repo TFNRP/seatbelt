@@ -29,13 +29,13 @@ Modern Seatbelt does the following:
   without seatbelt.
 - Lightweight, out of the box.
 - Supports the TFNRP framework.
+- Realistic sound effects for buckling & driving w/o SB.
 
 ## Coming Soon
 
 Features that are planned for Modern Seatbelt:
 
 - Complimentary scripts for compatible UI support.
-- Audible realistic beeping tone whilst driving without SB.
 
 ## Configuration
 
@@ -55,7 +55,8 @@ Name | Info | Default
 
 ## Credits & Copyright
 
-Thanks to @TehRamsus for their [Seatbelt](https://github.com/TehRamsus/Seatbelt) script, which inspired me to create Modern Seatbelt.  
+- [@TehRamsus](https://forum.cfx.re/u/TehRamsus) for their [Seatbelt](https://github.com/TehRamsus/Seatbelt) script, which inspired me to create Modern Seatbelt.  
+- [@Mercy3](https://forum.cfx.re/u/Mercy3) for providing and giving permission of use of `static/assets/{buckle,chime,unbuckle}.ogg` files.
+
 Licensed under [MIT License](https://github.com/TFNRP/seatbelt/blob/main/LICENSE). No code or assets of the inspiring work has been used.  
-The original author stated they would rework their original work but has not done so since Oct 25th, '21, hence my release.  
-I messaged @TehRamsus regarding my script on Oct 11th, '21 and yet to receive a response. I'm happy to take down this release upon request.
+The author of [Seatbelt](https://github.com/TehRamsus/Seatbelt) stated they would rework their original work but has not done so since Oct 25th, '21, hence my release.  
