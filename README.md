@@ -1,5 +1,7 @@
 # Seatbelt
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f5b71b82009d4c4fb794bf5aa2c5180f)](https://app.codacy.com/gh/TFNRP/seatbelt?utm_source=github.com&utm_medium=referral&utm_content=TFNRP/seatbelt&utm_campaign=Badge_Grade_Settings)
+
 ## About
 
 A modern realisation on seatbelt scripts, for additional roleplay and realism to your server.  
