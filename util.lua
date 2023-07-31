@@ -26,7 +26,6 @@ else
 
     function IsLEO()
       if (update) then
-        print('update')
         TriggerServerEvent('seatbelt:ServerHasAce')
         update = false
         Citizen.SetTimeout(12e3, function ()
@@ -36,7 +35,6 @@ else
         while update == false do
           Citizen.Wait(1)
         end
-        print(has_ace)
 
         update = false
       end
