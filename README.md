@@ -12,6 +12,7 @@ A modern realisation on seatbelt scripts, for additional roleplay and realism to
 $ git clone https://github.com/TFNRP/seatbelt.git
 ```
 
+- (Optional) Copy `config.default.lua`, rename the copy to `config.lua` and edit it to your liking.
 - Add the following to your `server.cfg`:
   - `ensure seatbelt`
 
@@ -39,6 +40,9 @@ Features that are planned for Modern Seatbelt:
 
 ## Configuration
 
+> Note: Do not edit `config.default.lua`
+
+Copy `config.default.lua` and rename the copy to `config.lua`.  
 Check [config.lua](https://github.com/TFNRP/seatbelt/blob/main/config.lua) for better details.
 
 Name | Info | Default

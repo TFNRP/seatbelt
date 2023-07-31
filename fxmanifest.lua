@@ -8,6 +8,7 @@ author 'Reece Stokes <hagen@hyena.gay>'
 
 client_script {
   '@framework/util.lua',
+  'config.default.lua',
   'config.lua',
   'util.lua',
   'client.lua',
