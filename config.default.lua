@@ -5,16 +5,22 @@
 --- @type {}
 Config = {}
 
+--- The method that should be used to check whether a player is an on-duty LEO.  
+--- For a player to receive an LEO notification, they must
+--- - `1` = be inside a police vehicle; or
+--- - `2` = have the `seatbelt.notify` ACL.
+--- @type 1 | 2
+Config.LeoCheck = 2
+
 --- Changes how players are identified to LEOs. Cannot be nilish
 --- - `1` = Player ID (i.e. "Player 7")
---- - `2` = Seat position (i.e. "Driver", "Passenger", "Back left passenger", "Far back left passenger")
+--- - `2` = Seat position (i.e. "Driver", "Passenger", "Rear left passenger", "Far rear left passenger")
 --- - `3` = Username (i.e. "Hagen Hyena", "1D-32 Backer P.")
---- @type (1 | 2 | 3)
+--- @type 1 | 2 | 3
 Config.PlayerIdentifierType = 1
 
-
 --- Distance which LEOs can detect seatbelt-less occupants within.
---- @type number
+--- @type number -- A postive number
 Config.Distance = 20
 
 --- The default seatbelt keybind.  

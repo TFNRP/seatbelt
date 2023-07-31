@@ -9,12 +9,15 @@ A modern realisation on seatbelt scripts, for additional roleplay and realism to
 - Install to your `resource` folder (or [download manually](https://github.com/TFNRP/seatbelt/archive/refs/heads/main.zip)):
 
 ```bash
-$ git clone https://github.com/TFNRP/seatbelt.git
+git clone https://github.com/TFNRP/seatbelt.git
 ```
 
 - (Optional) Copy `config.default.lua`, rename the copy to `config.lua` and edit it to your liking.
 - Add the following to your `server.cfg`:
   - `ensure seatbelt`
+  - (Optional) `add_ace group.police seatbelt.notify allow`  
+    Replace `police` with your LEO group.  
+    This is optional if you don't use ACL - read [Configuration](#configuration).
 
 ## Features
 
@@ -43,13 +46,14 @@ Features that are planned for Modern Seatbelt:
 > Note: Do not edit `config.default.lua`
 
 Copy `config.default.lua` and rename the copy to `config.lua`.  
-Check [config.lua](https://github.com/TFNRP/seatbelt/blob/main/config.lua) for better details.
+Check [config.lua](https://github.com/TFNRP/seatbelt/blob/main/config.default.lua) for better details.
 
-Name | Info | Default
---: | :-- | :--
-`PlayerIdentifierType` | What type of LEO notifications should be shown?</br>Can be player's ID, player's seat (i.e. Driver or rear passenger) or player's username. | `1`
-`Distance` | The amount of distance LEOs have to be to detect people not weaing a seatbelt. | `20`
-`DefaultKeybind` | The default seatbelt keybind. | `K`
+property | description
+-- | --
+`LeoCheck` = `2` | The method this script should use to check whether a player is an (on-duty) LEO.</br>`1` = be inside a police vehicle; or</br>`2` = have the `seatbelt.notify` ACL.
+`PlayerIdentifierType` = `1` | What type of LEO notifications should be shown?</br>`1` = Player ID (i.e. "Player 7")</br>`2` = Seat position (i.e. "Driver", "Passenger", "Rear left passenger", "Far rear left passenger")</br>`3` = Username (i.e. "Hagen Hyena", "1D-32 Backer P.")
+`Distance` = `20` | The amount of distance LEOs have to be to detect people not weaing a seatbelt.  
+`DefaultKeybind` = `K` | The default seatbelt keybind.  
 `Excluded` | A list of excluded vehicles and vehicle seats.
 
 ## Contributing

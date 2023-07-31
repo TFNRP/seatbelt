@@ -20,9 +20,44 @@ else
   function IsHudHidden()
     return false
   end
-  function IsLEO()
-    return IsPedInAnyPoliceVehicle(PlayerPedId())
+  if (Config.LeoCheck == 2) then
+    local has_ace = false
+    local update = true
+
+    function IsLEO()
+      if (update) then
+        print('update')
+        TriggerServerEvent('seatbelt:ServerHasAce')
+        update = false
+        Citizen.SetTimeout(12e3, function ()
+          update = true
+        end)
+
+        while update == false do
+          Citizen.Wait(1)
+        end
+        print(has_ace)
+
+        update = false
+      end
+
+      return has_ace
+    end
+
+    RegisterNetEvent('seatbelt:ClientHasAce', function(bool)
+      has_ace = bool
+      update = true
+    end)
+  else
+    if (Config.LeoCheck ~= 1) then
+      Citizen.Trace('Config.LeoCheck was not set correctly, using police vehicle check instead')
+    end
+    function IsLEO()
+      return IsPedInAnyPoliceVehicle(PlayerPedId())
+    end
   end
+
+  Config.LeoCheck = nil
 end
 
 -- config setup
