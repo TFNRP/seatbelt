@@ -24,7 +24,7 @@ $(() => {
       },
       700,
     );
-  }
+  };
 
   const disableIcon = () => {
     const ui = $('#ui');
@@ -37,7 +37,7 @@ $(() => {
       700,
       () => ui.css('display', 'none'),
     );
-  }
+  };
 
   sounds.chime.on('play', enableIcon);
   sounds.chime.on('stop', disableIcon);
@@ -68,18 +68,21 @@ $(() => {
         switch (payload.d) {
           case 1:
             sounds.chime.loop(true);
-            if (!sounds.chime.playing())
+            if (!sounds.chime.playing()) {
               sounds.chime.play();
+            }
             break;
 
           case 3:
             sounds.chime.stop();
             sounds.unbluckle.stop();
+          // Fallthrough
 
           case 0:
             sounds.chime.loop(false);
             break;
-        } break;
+        }
+        break;
       }
     }
   });
