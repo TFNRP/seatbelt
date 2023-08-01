@@ -26,7 +26,6 @@ function ActivateSeatbelt()
   if activated == true then
     return error('seatbelt attempted to activate when already active.')
   end
-  SetWarning(false)
   -- compat for other resources like carhud
   TriggerEvent('seatbelt:stateChange', true)
 
@@ -68,29 +67,6 @@ function DeactivateSeatbelt()
   end
   TriggerEvent('seatbelt:stateChange', false)
 
-  -- HUD
-  Citizen.CreateThread(function()
-    while not activated do
-      local ped = PlayerPedId()
-      if IsPedInAnyVehicle(ped) and hasSeatbelt and not IsHudHidden() then
-        local vehicle = GetVehiclePedIsIn(ped)
-        local speed = GetEntitySpeed(vehicle) * 3.6
-
-        if speed > 20 and not (IsPlayerDead(PlayerId()) or IsPauseMenuActive()) then
-          SetWarning(true)
-          showHelp = true
-        else
-          SetWarning(false)
-          showHelp = false
-        end
-      else
-        SetWarning(false)
-        showHelp = false
-      end
-      Citizen.Wait(2e3)
-    end
-  end)
-
   -- help text separate from hud
   Citizen.CreateThread(function()
     while not activated do
@@ -107,7 +83,7 @@ function DeactivateSeatbelt()
     end
   end)
 
-  -- handling
+  -- handling and HUD
   Citizen.CreateThread(function()
     while not activated do
       local ped = PlayerPedId()
@@ -121,17 +97,31 @@ function DeactivateSeatbelt()
           if speed > (50 / 3.6) and (lastSpeed - speed) > (speed * .2) then
             local coords = GetEntityCoords(ped)
             local fw = Fwv(ped)
+            ForceStopWarning()
+            showHelp = false
             SetEntityCoords(ped, coords.x + fw.x, coords.y + fw.y, coords.z - .47, true, true, true)
             SetEntityVelocity(ped, lastVelocity.x, lastVelocity.y, lastVelocity.z)
             SetPedToRagdoll(ped, 1e3, 1e3, 0, false, false, false)
+          elseif speed > (20 / 3.6) then
+            SetWarning(true)
+            showHelp = not (IsPauseMenuActive() or IsHudHidden() or IsPlayerDead(PlayerId()))
+          else
+            SetWarning(false)
+            showHelp = false
           end
 
           lastSpeed = speed
           lastVelocity = GetEntityVelocity(vehicle)
         end
+      else
+        ForceStopWarning()
+        showHelp = false
       end
       Citizen.Wait(50)
     end
+
+    SetWarning(false)
+    showHelp = false
   end)
 
   -- notification
@@ -153,6 +143,13 @@ function SetWarning(bool)
   if bool ~= showingWarning then
     SendNuiMessage('{"t":1,"d":' .. (bool == true and '1' or '0') .. '}')
     showingWarning = bool
+  end
+end
+
+function ForceStopWarning()
+  if showingWarning then
+    SendNuiMessage('{"t":1,"d":3}')
+    showingWarning = false
   end
 end
 

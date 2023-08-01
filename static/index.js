@@ -12,6 +12,39 @@ const buckle = [sounds.unbluckle, sounds.buckle];
 
 $(() => {
   const top = $('#seatbelt').css('top');
+
+  const enableIcon = () => {
+    const ui = $('#ui');
+    ui.stop(true, true);
+    ui.css('display', 'flex');
+    $('#seatbelt').animate(
+      {
+        top,
+        opacity: '1.0',
+      },
+      700,
+    );
+  }
+
+  const disableIcon = () => {
+    const ui = $('#ui');
+    ui.stop(true, true);
+    $('#seatbelt').animate(
+      {
+        top: '100vw',
+        opacity: '0.0',
+      },
+      700,
+      () => ui.css('display', 'none'),
+    );
+  }
+
+  sounds.chime.on('play', enableIcon);
+  sounds.chime.on('stop', disableIcon);
+  sounds.chime.on('end', () => {
+    if (!sounds.chime.loop()) disableIcon();
+  });
+
   window.addEventListener('message', event => {
     const payload = event.data;
 
@@ -32,34 +65,21 @@ $(() => {
       }
 
       case 1: {
-        const ui = $('#ui');
-        ui.stop(true, true);
-        if (payload.d === 1) {
-          ui.css('display', 'flex');
-          $('#seatbelt').animate(
-            {
-              top,
-              opacity: '1.0',
-            },
-            700,
-          );
-  
-          if (!sounds.chime.playing()) {
-            sounds.chime.play();
-          }
-          sounds.chime.loop(true);
-        } else {
-          $('#seatbelt').animate(
-            {
-              top: '100vw',
-              opacity: '0.0',
-            },
-            700,
-            () => ui.css('display', 'none'),
-          );
-          sounds.chime.loop(false);
-        }
-        break;
+        switch (payload.d) {
+          case 1:
+            sounds.chime.loop(true);
+            if (!sounds.chime.playing())
+              sounds.chime.play();
+            break;
+
+          case 3:
+            sounds.chime.stop();
+            sounds.unbluckle.stop();
+
+          case 0:
+            sounds.chime.loop(false);
+            break;
+        } break;
       }
     }
   });
