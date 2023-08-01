@@ -13,46 +13,53 @@ const buckle = [sounds.unbluckle, sounds.buckle];
 $(() => {
   const top = $('#seatbelt').css('top');
   window.addEventListener('message', event => {
-    const ui = $('#ui');
-    ui.stop(true, true);
-    if ('State' in event.data) {
-      const state = +event.data.State;
-      let playing;
-      // If another sound is already playing, play the new sound from the reverse of the elapsed time
-      if ((playing = buckle.find(sound => sound.playing()))) {
-        const seek = buckle[state].duration() - playing.seek();
-        playing.stop();
-        buckle[state].play();
-        if (seek > 0) buckle[state].seek(seek);
-      } else {
-        buckle[state].play();
-      }
-    }
+    const payload = event.data;
 
-    if ('Enabled' in event.data) {
-      sounds.chime.loop(event.data.Enabled);
-      if (event.data.Enabled) {
-        ui.css('display', 'flex');
-        $('#seatbelt').animate(
-          {
-            top,
-            opacity: '1.0',
-          },
-          700,
-        );
-
-        if (!sounds.chime.playing()) {
-          sounds.chime.play();
+    switch (payload.t) {
+      case 0: {
+        const data = payload.d;
+        let playing;
+        // If another sound is already playing, play the new sound from the reverse of the elapsed time
+        if ((playing = buckle.find(sound => sound.playing()))) {
+          const seek = buckle[data].duration() - playing.seek();
+          playing.stop();
+          buckle[data].play();
+          if (seek > 0) buckle[data].seek(seek);
+        } else {
+          buckle[data].play();
         }
-      } else {
-        $('#seatbelt').animate(
-          {
-            top: '100vw',
-            opacity: '0.0',
-          },
-          700,
-          () => ui.css('display', 'none'),
-        );
+        break;
+      }
+
+      case 1: {
+        const ui = $('#ui');
+        ui.stop(true, true);
+        if (payload.d === 1) {
+          ui.css('display', 'flex');
+          $('#seatbelt').animate(
+            {
+              top,
+              opacity: '1.0',
+            },
+            700,
+          );
+  
+          if (!sounds.chime.playing()) {
+            sounds.chime.play();
+          }
+          sounds.chime.loop(true);
+        } else {
+          $('#seatbelt').animate(
+            {
+              top: '100vw',
+              opacity: '0.0',
+            },
+            700,
+            () => ui.css('display', 'none'),
+          );
+          sounds.chime.loop(false);
+        }
+        break;
       }
     }
   });
