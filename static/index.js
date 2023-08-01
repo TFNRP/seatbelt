@@ -21,7 +21,7 @@ $(() => {
         let playing;
         // If another sound is already playing, play the new sound from the reverse of the elapsed time
         if ((playing = buckle.find(sound => sound.playing()))) {
-          const seek = buckle[data].duration() - playing.seek();
+          const seek = buckle[data].duration() - playing.seek() - 0.423764;
           playing.stop();
           buckle[data].play();
           if (seek > 0) buckle[data].seek(seek);
